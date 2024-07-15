@@ -63,9 +63,8 @@ const Signin = () => {
           title: "",
           message: "",
         })
-      }, 4000);
+      }, 3000);
 
-      console.log(json)
       
     }
   };
@@ -196,7 +195,7 @@ const Signin = () => {
               <p className="text-base text-body-color dark:text-dark-6">
                 <span className="pr-0.5">Not a member yet?</span>
                 <Link
-                  to="/#"
+                  to="/signup"
                   className="text-primaryColor hover:underline"
                 >
                   Sign Up

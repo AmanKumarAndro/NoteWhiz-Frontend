@@ -3,18 +3,12 @@ import NoteContext from '../context/notes/noteContext';
 import Alert from './Alert';
 
 const ModalAddNote = ({ existingNote, darkMode, setModalOpen }) => {
-    const context = useContext(NoteContext);
-    const { addNote, editNote, getNotes  } = context;
+    const { addNote, editNote, alert } = useContext(NoteContext);
 
     const [note, setNote] = useState({
         title: "",
         description: "",
         tag: "Personal"
-    });
-    // context for alert
-    const [alert, setAlert] = useState({
-        title: "",
-        message: ""
     });
 
     const modalRef = useRef();
@@ -35,39 +29,11 @@ const ModalAddNote = ({ existingNote, darkMode, setModalOpen }) => {
         // Conditional logic for adding or updating note
         if (existingNote) {
             editNote(existingNote._id, note.title, note.description, note.tag);
-            // setTimeout(() => {
-            //     alert("Note updated successfully");
-            //   }, 300);
-            // alert("Update")
-            setAlert({
-                title: "NoteWhiz",
-                message: "Note updated successfully",
-            })
-            // setTimeout(() => {
-            //     setAlert({
-            //         title: "",
-            //         message: "",
-            //     })
-            // }, 4000);
-
         } else {
             addNote(note.title, note.description, note.tag);
-            setAlert({
-                title: "NoteWhiz",
-                message: "Note added successfully",
-            })
-            setTimeout(() => {
-                setAlert({
-                    title: "",
-                    message: "",
-                })
-            }, 4000);
         }
-        // window.location.reload();
         setModalOpen(false);
-
     };
-
 
     const handleChange = (e) => {
         setNote({ ...note, [e.target.name]: e.target.value });
@@ -87,13 +53,9 @@ const ModalAddNote = ({ existingNote, darkMode, setModalOpen }) => {
         };
     }, [setModalOpen]);
 
-
-
-
-
     return (
         <>
-            <Alert title={alert.title} message={alert.message} />
+            {/* <Alert title={alert.title} message={alert.message} /> */}
             <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm'>
                 <div ref={modalRef} className="w-full max-w-[570px] rounded-[20px] bg-white px-8 py-12 text-center dark:bg-dark-2 md:px-[70px] md:py-[60px]">
                     <h3 className="pb-[18px] text-xl font-semibold text-dark dark:text-white sm:text-2xl">
@@ -123,6 +85,6 @@ const ModalAddNote = ({ existingNote, darkMode, setModalOpen }) => {
             </div>
         </>
     );
-}
+};
 
 export default ModalAddNote;

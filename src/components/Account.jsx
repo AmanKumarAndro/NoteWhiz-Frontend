@@ -31,6 +31,11 @@ export default function Account() {
     document.addEventListener("keydown", keyHandler);
     return () => document.removeEventListener("keydown", keyHandler);
   });
+  const handleLogout = () => {
+    localStorage.clear();
+    window.location.href = "/signin";
+    window.location.reload();
+  };
 
   return (
     <section className="bg-gray-2 py-20 dark:bg-dark">
@@ -44,14 +49,14 @@ export default function Account() {
             >
               <div class="relative mr-4 h-[42px] w-[42px] rounded-full">
                 <img
-                  src="https://cdn.tailgrids.com/2.2/assets/core-components/images/avatar/image-05.jpg"
-                  alt="avatar"
+                  src="https://i.ibb.co/TmjGK84/Croped-its-mee.png"
+                  alt="NoteWhiz"
                   class="h-full w-full rounded-full object-cover object-center"
                 />
-                <span class="absolute -right-0.5 -top-0.5 block h-[14px] w-[14px] rounded-full border-[2.3px] border-white bg-[#219653] dark:border-dark"></span>
+                {/* <span class="absolute -right-0.5 -top-0.5 block h-[14px] w-[14px] rounded-full border-[2.3px] border-white bg-[#219653] dark:border-dark"></span> */}
               </div>
               <span class="text-base font-medium text-dark dark:text-white">
-                Devid Milinear
+                {localStorage.getItem("name")}
               </span>
               <span class="pl-[10px] text-dark duration-100 dark:text-white">
                 <svg
@@ -72,24 +77,23 @@ export default function Account() {
               onBlur={() => setDropdownOpen(false)}
               className={`absolute right-0 top-full z-40 w-[200px] space-y-1 rounded bg-white p-2 shadow-card dark:bg-dark-2 dark:shadow-box-dark ${dropdownOpen ? "block" : "hidden"}`}
             >
-              <a
+              <button
                 href="javascript:void(0)"
                 class="block w-full rounded px-3 py-2 text-left text-sm text-body-color hover:bg-gray-2 dark:text-dark-6 dark:hover:bg-dark-3"
               >
                 Profile
-              </a>
-              <a
-                href="javascript:void(0)"
+              </button>
+              <button
                 class="block w-full rounded px-3 py-2 text-left text-sm text-body-color hover:bg-gray-2 dark:text-dark-6 dark:hover:bg-dark-3"
               >
                 Settings
-              </a>
-              <a
-                href="javascript:void(0)"
-                class="block w-full rounded px-3 py-2 text-left text-sm text-body-color hover:bg-gray-2 dark:text-dark-6 dark:hover:bg-dark-3"
+              </button>
+              <button
+                onClick={handleLogout}
+                class="block w-full rounded px-3 py-2 text-left text-sm text-fadeHeading hover:bg-primaryColor hover:text-white dark:text-dark-6 dark:hover:bg-dark-3"
               >
                 Sign Out
-              </a>
+              </button>
             </div>
           </div>
         </div>

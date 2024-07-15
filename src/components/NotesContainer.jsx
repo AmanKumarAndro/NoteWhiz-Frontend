@@ -25,7 +25,7 @@ const NotesContainer = ({
 
   return (
     <>
-      <div className={`mb-10 overflow-hidden rounded-lg bg-white shadow-1 duration-300 hover:shadow-3 ${props.darkMode ? 'dark:bg-dark-2 dark:shadow-card dark:hover:shadow-3' : ''}`}>
+      <div className={`mb-10 overflow-hidden rounded-xl shadow-xl bg-[#ecf0fd] shadow-1 duration-300 hover:shadow-3 ${props.darkMode ? 'dark:bg-dark-2 dark:shadow-card dark:hover:shadow-3' : ''}`}>
         {/* <img src={image} alt="" className="w-full" /> */}
         {props.date && (
           <span className={`mb-5 inline-block rounded bg-primaryColor px-4 py-1 text-center text-xs font-semibold leading-loose text-white ${props.darkMode ? 'dark:bg-primaryColor' : ''}`}>

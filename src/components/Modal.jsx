@@ -3,20 +3,14 @@ import { FaRegEdit } from "react-icons/fa";
 import { MdDeleteSweep } from "react-icons/md";
 import NoteContext from '../context/notes/noteContext';
 import ModalAddNote from './ModalAddNote';
-import Alert from "./Alert";
 
 const Modal = ({ props, darkMode }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false);
-  const context = useContext(NoteContext);
-  const { deleteNote } = context;
+  const { deleteNote, alert } = useContext(NoteContext);
 
   const trigger = useRef(null);
   const modal = useRef(null);
-  const [alert, setAlert] = useState({
-    title: "",
-    message: ""
-});
 
   // close on click outside
   useEffect(() => {
@@ -41,21 +35,8 @@ const Modal = ({ props, darkMode }) => {
 
   const handleDelete = () => {
     deleteNote(props._id);
-    setAlert({
-      title: "NoteWhiz",
-      message: "Note deleted successfully",
-    })
-    setTimeout(() => {
-      setAlert({
-        title: "",
-        message: "",
-      })
-    }, 4000);
     setModalOpen(false);
-    
   };
- 
-  
 
   return (
     <>      
@@ -77,11 +58,6 @@ const Modal = ({ props, darkMode }) => {
             onBlur={() => setModalOpen(false)}
             className="w-full backdrop:blur max-w-[570px] rounded-[20px] bg-white px-8 py-12 text-center dark:bg-dark-2 md:px-[70px] md:py-[60px]"
           >
-            {/* <p
-              className={`rounded-md border mx-[-70px] rounded-tl-[20px] mt-[-81px] bg-primaryColor p-2 text-center text-base font-medium text-white `}
-              >
-                {props.tag}
-              </p> */}
             <div className="flex mt-[-20px] items-center gap-2 justify-between">
               <p className={`rounded-md border mx-[-70px] rounded-tl-[20px] mt-[-81px] bg-primaryColor p-2 text-center text-base font-medium text-white`}>
                 {props.tag}

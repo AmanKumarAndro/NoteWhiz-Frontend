@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Alert from "./Alert";
 
 const Signin = () => {
   const [credentials, setCredentials] = useState({
@@ -7,7 +8,7 @@ const Signin = () => {
     email: "",
     password: ""
   });
-  const [alert, setAlert] = useState({
+  const [alertMsg, setAlert] = useState({
     title: "",
     message: ""
 });
@@ -39,7 +40,6 @@ const Signin = () => {
     if(json.success){
       localStorage.setItem('token',json.authToken)
       window.location.href = "/";
-      console.log(json)
     }else{
       // setError(json.errors[0].msg)
       if (json.ald) {
@@ -66,7 +66,6 @@ const Signin = () => {
           })
         }, 4000);
       }
-      console.log(json)
     }
   };
 
@@ -77,7 +76,7 @@ const Signin = () => {
 
   return (
     <section className="bg-gray-1 py-20 dark:bg-dark lg:py-[120px]">
-      <Alert title={alert.title} message={alert.message} />
+      <Alert title={alertMsg.title} message={alertMsg.message} />
       <div className="container mx-auto">
         <div className="-mx-4 flex flex-wrap">
           <div className="w-full px-4">
@@ -88,10 +87,6 @@ const Signin = () => {
                   className="mx-auto inline-block max-w-[160px]"
                               >
                                   <h1 className="text-4xl underline underline-offset-8  font-bold text-PrimaryColor">NoteWhiz</h1>
-                  {/* <img
-                    src="https://cdn.tailgrids.com/2.0/image/assets/images/logo/logo-primary.svg"
-                    alt="logo"
-                  /> */}
                 </Link>
               </div>
               <form onSubmit={handleSubmit}>
@@ -194,16 +189,10 @@ const Signin = () => {
                   </Link>
                 </li>
               </ul>
-              {/* <Link
-                to="/#"
-                className="mb-2 inline-block text-base text-dark hover:text-primaryColor hover:underline dark:text-white"
-              >
-                Forget Password?
-              </Link> */}
               <p className="text-base text-body-color dark:text-dark-6">
-                <span className="pr-0.5">Already a member ?</span>
+                <span className="pr-0.5">Already a User ?</span>
                 <Link
-                  to="/#"
+                  to="/signin"
                   className="text-primaryColor hover:underline"
                 >
                   Sign in

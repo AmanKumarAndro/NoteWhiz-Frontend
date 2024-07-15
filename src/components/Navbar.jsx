@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FiSun, FiMoon } from "react-icons/fi";
 import { Link, NavLink } from "react-router-dom";
-
+import Account from "./Account";
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
@@ -77,10 +77,15 @@ const Navbar = () => {
               >
                 Sign Up
               
-                </Link></>) : (<div className="rounded-md px-7 py-3 text-base hover:text-smallTextColor bg-headingColor hover:bg-blue-900 font-medium" onClick={() => {
-                  localStorage.clear();
-                  window.location.reload();
-              }}>Logout</div>)}
+                </Link></>) : (
+                // <div className="rounded-md px-7 py-3 text-base hover:text-smallTextColor bg-headingColor hover:bg-blue-900 font-medium" onClick={() => {
+                  //   localStorage.clear();
+                  //   window.location.reload();
+                  // }}>Logout</div>
+                  <div className=" m-[-70px]">
+                    <Account />
+                  </div>
+              )}
             </div>
           </div>
         </div>
