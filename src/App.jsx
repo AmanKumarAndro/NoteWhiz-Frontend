@@ -1,35 +1,41 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useEffect, useState } from 'react';
+import Aos from 'aos';
+import './App.css';
+import Notes from './components/Notes';
+import ModalAddNote from './components/ModalAddNote';
+import { IoIosAddCircle } from "react-icons/io";
+import NoteState from './context/notes/NoteState';
+import Alert from './components/Alert';
 
 function App() {
-  const [count, setCount] = useState(0)
+  useEffect(() => {
+    Aos.init({ duration: 1000 });
+  }, []);
 
+  const [modalOpen, setModalOpen] = useState(false);
+  
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <NoteState>
+        <section className="bg-gray-2 pb-10 pt-20 dark:bg-dark lg:pb-20 lg:pt-[120px]">
+          <div className="container">
+            <Notes/>
+            <div>
+              <button
+                onClick={() => setModalOpen(true)}
+                className='text-primaryColor fixed bottom-10 right-10'>
+                <IoIosAddCircle size={60} />
+              </button>
+              {modalOpen && <ModalAddNote
+                modalOpen={modalOpen}
+                setModalOpen={setModalOpen}
+              />}
+            </div>
+          </div>
+        </section>
+      </NoteState>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
