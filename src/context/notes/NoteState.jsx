@@ -2,7 +2,7 @@ import NoteContext from "./noteContext";
 import React, { useState } from 'react';
 
 const NoteState = (props) => {
-  const host = "http://localhost:3000";
+  const host = "https://note-whiz-backend.vercel.app";
   const notesHard = [];
 
   const [notes, setNotes] = useState(notesHard);
